@@ -42,17 +42,21 @@ function App() {
   }
 
   const savePlaylist = () => {
-    let trackURIs = []
+    const trackURIs = playlistTracks.map(track => track.uri);
+  }
+
+  const search = (term) => {
+    console.log(term);
   }
 
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
-        <SearchBar />
+        <SearchBar onSearch={search}/>
         <div className="App-playlist">
           <SearchResults searchResults={searchResults} onAdd={addTrack}/>
-          <Playlist playlistTracks={playlistTracks} playlistName={playlistName} onRemove={RemoveTrack} onNameChange={updatePlaylistName}/>
+          <Playlist playlistTracks={playlistTracks} playlistName={playlistName} onRemove={RemoveTrack} onNameChange={updatePlaylistName} onSave={savePlaylist}/>
         </div>
       </div>
     </div>
